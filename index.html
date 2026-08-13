@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R2 GAMES | المنصة الأسطورية لكرة القدم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #060913;
+            --card-bg: rgba(18, 24, 38, 0.85);
+            --gold-primary: #ffd700;
+            --gold-gradient: linear-gradient(135deg, #ffe57f 0%, #ffb300 50%, #ff8f00 100%);
+            --fut-card-bg: linear-gradient(145deg, #1f1a0a 0%, #3a2e0a 50%, #000000 100%);
+            --accent-green: #25d366;
+            --accent-red: #ff3366;
+            --accent-blue: #00d2ff;
+            --text-color: #ffffff;
+            --glow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top center, #111b2e 0%, var(--bg-main) 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+
+        .whatsapp-top-btn {
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.05rem;
+            font-weight: 900;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.8);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .nav-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1000px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 950px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), var(--glow);
+            backdrop-filter: blur(15px);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            margin: 4px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn:disabled {
+            background: #555 !important;
+            color: #888 !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #2b3648, #18202c);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff3366, #990026);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+        }
+
+        .btn-facebook {
+            background: linear-gradient(135deg, #1877f2, #0056b3);
+            color: #fff;
+        }
+
+        .btn-messenger {
+            background: linear-gradient(135deg, #0084ff, #00c6ff);
+            color: #fff;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .mode-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 20px;
+            border-radius: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .mode-card:hover {
+            border-color: var(--gold-primary);
+            background: rgba(255, 215, 0, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .fut-card {
+            width: 210px;
+            height: 310px;
+            background: var(--fut-card-bg);
+            border-radius: 18px;
+            position: relative;
+            margin: 15px auto;
+            color: #fff;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), inset 0 0 15px rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .fut-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .fut-card:hover::before {
+            left: 100%;
+        }
+
+        .fut-card .rating {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            line-height: 1;
+        }
+
+        .fut-card .position {
+            position: absolute;
+            top: 48px;
+            right: 18px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #ddd;
+        }
+
+        .fut-card .player-avatar {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 15px;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .fut-card .name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-top: 12px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .fut-card .type {
+            font-size: 0.75rem;
+            font-weight: bold;
+            background: var(--gold-gradient);
+            color: #000;
+            padding: 3px 12px;
+            border-radius: 12px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .squad-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .squad-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            width: 48%;
+            min-width: 280px;
+        }
+
+        .prime-field {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            background: radial-gradient(circle, #0e3d26 0%, #051a10 100%);
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid var(--gold-primary);
+        }
+
+        .field-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .box {
+            background: linear-gradient(135deg, #112233, #0a111a);
+            height: 75px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid var(--accent-blue);
+            box-shadow: 0 4px 10px rgba(0,210,255,0.2);
+            transition: 0.3s;
+        }
+
+        .box.opened {
+            background: #222;
+            border-color: #555;
+            color: #777;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .box:hover:not(.opened) {
+            transform: scale(1.05);
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px var(--gold-primary);
+        }
+
+        .r2-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .r2-table th, .r2-table td {
+            padding: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+        }
+
+        .r2-table th {
+            background: var(--gold-gradient);
+            color: #000;
+            font-size: 1.1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .poem-box {
+            text-align: center;
+            line-height: 2.2;
+            font-size: 1.1rem;
+            color: var(--gold-primary);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .winner-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(0, 0, 0, 0.8));
+            border: 2px solid var(--gold-primary);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px auto;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .winner-box h3 {
+            color: var(--gold-primary);
+            font-size: 1.4rem;
+        }
+
+        .share-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .custom-bid-container {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .custom-bid-input {
+            width: 100%;
+            max-width: 250px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 2px solid var(--gold-primary);
+        }
+
+        /* Ultimate Team CSS Enhancements */
+        .ut-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.6);
+            padding: 12px;
+            border-radius: 15px;
+            border: 1px solid var(--gold-primary);
+            margin-bottom: 15px;
+        }
+        .ut-stats {
+            display: flex;
+            gap: 15px;
+            font-weight: bold;
+        }
+        .ut-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .ut-slot {
+            background: rgba(0,0,0,0.5);
+            border: 1px dashed var(--gold-primary);
+            border-radius: 10px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.85rem;
+            padding: 5px;
+            text-align: center;
+        }
+        .ut-slot.filled {
+            border-style: solid;
+            background: rgba(255, 215, 0, 0.1);
+        }
+        .activity-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .progress-bar-bg {
+            background: rgba(0,0,0,0.6);
+            border-radius: 10px;
+            height: 16px;
+            width: 100%;
+            overflow: hidden;
+            margin: 8px 0;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        .progress-bar-fill {
+            background: var(--gold-gradient);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .player-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.4);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            border: 1px solid rgba(255,215,0,0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="whatsapp-top-btn">
+        <a href="https://chat.whatsapp.com/EEPGxiiNW5QLFyr3tTiUzZ?s=cl&p=a&ilr=1" target="_blank" class="btn-whatsapp">
+            🟢 رابط المنصة المنشأة على الواتساب
+        </a>
+    </div>
+
+    <header>
+        <h1>⚽ R2 GAMES ⚽</h1>
+        <p>المنصة التفاعلية الرسمية - ألعاب ومزادات كرة القدم الاحترافية</p>
+    </header>
+
+    <div class="nav-bar">
+        <button class="btn btn-secondary" onclick="showSection('setup-section')">الرئيسية</button>
+        <button class="btn" onclick="showSection('ultimate-team-section')">🔥 ULTIMATE TEAM</button>
+        <button class="btn" onclick="showSection('prime-icons-section')">👑 أيكونز برايم (99)</button>
+        <button class="btn btn-secondary" onclick="showSection('r2-section')">🟢 منصة R2 والكرة الذهبية</button>
+        <button class="btn btn-secondary" onclick="openModal('friendsModal')">👥 الأصدقاء</button>
+        <button class="btn btn-secondary" onclick="openModal('inboxModal')">📬 البريد الوارد <span id="inbox-badge" style="color:var(--accent-red)">(1)</span></button>
+        <button class="btn btn-secondary" onclick="openModal('eventsModal')">🔥 الأحداث</button>
+        <button class="btn btn-secondary" onclick="openModal('poemModal')">📜 شرح الموقع</button>
+        <button class="btn btn-secondary" onclick="openModal('settingsModal')">⚙️ الإعدادات</button>
+    </div>
+
+    <div class="container">
+        
+        <!-- SECTION 1: Mode & Setup -->
+        <div id="setup-section" class="section active">
+            <h2 style="text-align: center; margin-bottom: 10px;">اختر نظام اللعب</h2>
+            <div class="grid-3">
+                <div class="mode-card" onclick="selectMode('1v1')">
+                    <h3>👥 لاعبين (جهاز واحد)</h3>
+                    <p>تحدي صديقك وجهًا لوجه</p>
+                </div>
+                <div class="mode-card" onclick="selectMode('ai')">
+                    <h3>🤖 روبوت ذكي (AI)</h3>
+                    <p>اللعب ضد الذكاء الاصطناعي</p>
+                </div>
+                <div class="mode-card" onclick="selectMode('room')">
+                    <h3>🌐 غرفة أونلاين (Server 8080)</h3>
+                    <p>ربط هاتفين بكود عشوائي</p>
+                </div>
+            </div>
+
+            <div id="player-inputs" style="margin-top: 25px; display: none;">
+                <input type="text" id="p1-name" placeholder="اسم اللاعب الأول (مثال: BA)" value="BA">
+                <input type="text" id="p2-name" placeholder="اسم اللاعب الثاني (مثال: BE)" value="BE">
+                
+                <div id="room-box" style="display: none; text-align: center; background: rgba(0,210,255,0.1); padding: 15px; border-radius: 12px; border: 1px solid var(--accent-blue); margin-top: 10px;">
+                    <p style="color: var(--accent-blue); font-weight: bold;">🌐 نظام اتصال الغرفة الأونلاين (سيرفر 8080):</p>
+                    <p style="font-size: 0.85rem; margin-top: 5px;">شارك الكود التالي مع صديقك للاتصال المباشر عبر المنفذ 8080:</p>
+                    <div style="font-size: 2.2rem; color: var(--accent-green); font-weight: bold; margin: 10px 0; letter-spacing: 4px;" id="generated-code">------</div>
+                    <button class="btn btn-secondary" style="margin-bottom: 8px; font-size: 0.8rem;" onclick="generateNewRoomCode()">توليد كود جديد 🔄</button>
+                    <input type="text" id="join-code-input" placeholder="أدخل الكود المكون من 6 أرقام للانضمام">
+                    <button class="btn btn-secondary" style="margin-top: 5px; width: 100%; font-size: 0.85rem;" onclick="connectRoom()">تأكيد الاتصال بالغرفة (Server :8080) 🔗</button>
+                </div>
+
+                <button class="btn" style="width: 100%; margin-top: 15px;" onclick="goToGameMenu()">متابعة واختيار اللعبة ➔</button>
+            </div>
+        </div>
+
+        <!-- NEW SECTION: ULTIMATE TEAM -->
+        <div id="ultimate-team-section" class="section">
+            <div class="ut-header">
+                <div>
+                    <h3 style="color:var(--gold-primary);">⚡ Ultimate Team</h3>
+                    <p style="font-size:0.8rem;">مستوى النشاط: <span id="ut-level" style="color:var(--accent-green); font-weight:bold;">مستوى 1</span></p>
+                </div>
+                <div class="ut-stats">
+                    <div style="color:var(--accent-blue);">⭐ XB: <span id="ut-xb">0</span></div>
+                    <div style="color:var(--gold-primary);">✨ النقط: <span id="ut-points">0</span></div>
+                    <div style="color:var(--accent-green);">🪙 عملات السوق: <span id="ut-coins">0</span></div>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
+                <button class="btn" onclick="openDraftModal()">🎯 درافت (<span id="draft-count-disp">0</span>)</button>
+                <button class="btn btn-secondary" onclick="showUTSubSection('ut-activity')">⚡ النشاط</button>
+                <button class="btn btn-secondary" onclick="showUTSubSection('ut-market')">🛒 السوق</button>
+                <button class="btn btn-secondary" onclick="showUTSubSection('ut-squad')">👕 التشكيلة والموارد</button>
+            </div>
+
+            <!-- UT SQUAD & RESOURCES -->
+            <div id="ut-squad" class="ut-sub-section">
+                <h4 style="color:var(--gold-primary); text-align:center;">الملعب والتشكيلة الأساسية (11 لاعب)</h4>
+                <div class="ut-grid" id="main-squad-grid">
+                    <!-- Loaded dynamically -->
+                </div>
+
+                <div style="display:flex; gap:10px; margin-top:20px; justify-content:center;">
+                    <button class="btn btn-secondary" onclick="openSubsModal()">🔄 الاحتياطيين (11)</button>
+                    <button class="btn btn-secondary" onclick="openResourcesModal()">📦 الموارد (لا نهائي)</button>
+                </div>
+            </div>
+
+            <!-- UT ACTIVITY SECTION -->
+            <div id="ut-activity" class="ut-sub-section" style="display:none;">
+                <h4 style="color:var(--gold-primary); margin-bottom:10px; text-align:center;">⚡ مستويات النشاط والمكافآت</h4>
+                <div id="activity-levels-list">
+                    <!-- Dynamic rendering of 5 levels -->
+                </div>
+            </div>
+
+            <!-- UT MARKET -->
+            <div id="ut-market" class="ut-sub-section" style="display:none;">
+                <h4 style="color:var(--gold-primary); margin-bottom:10px; text-align:center;">🛒 سوق الانتقالات المباشر</h4>
+                <input type="text" id="market-search" placeholder="ابحث عن لاعب باسمه..." oninput="renderMarket()">
+                <div id="market-players-grid" class="grid-3" style="margin-top:15px;">
+                    <!-- Market dynamically generated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Game Menu -->
+        <div id="menu-section" class="section">
+            <h2 style="text-align: center;">اختر اللعبة</h2>
+            <div class="grid-3">
+                <div class="mode-card" onclick="startAuctionSetup(11)">
+                    <h3>🔨 المزاد برو ماكس (11 لاعب)</h3>
+                    <p>المزاد المباشر الكامل على تشكيلة 11 لاعب</p>
+                </div>
+                <div class="mode-card" onclick="startAuctionSetup(5)">
+                    <h3>⚽ الملعب الخماسي (5 لاعبين)</h3>
+                    <p>مزاد مصغر وسريع على 5 لاعبين فقط</p>
+                </div>
+                <div class="mode-card" onclick="startDealOrNoDeal()">
+                    <h3>💼 DEAL OR NO DEAL</h3>
+                    <p>تحدي الصناديق الاربعة والمحاولتين لكل مركز</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Auction Setup -->
+        <div id="auction-setup" class="section">
+            <h2 id="auction-setup-title">إعدادات المزاد برو ماكس 🔨</h2>
+            <p style="margin-top: 10px;">اختر الميزانية المتاحة لكل لاعب (من 50 مليون إلى 2 مليار $):</p>
+            <select id="budget-select">
+                <option value="50">50 مليون $</option>
+                <option value="200">200 مليون $</option>
+                <option value="500">500 مليون $</option>
+                <option value="1000">1 مليار $</option>
+                <option value="2000" selected>2 مليار $</option>
+            </select>
+            <button class="btn" style="width: 100%; margin-top: 15px;" onclick="startAuctionGame()">بدء المزاد ⚽</button>
+        </div>
+
+        <!-- SECTION 4: Auction Game -->
+        <div id="auction-game" class="section">
+            <div style="display: flex; justify-content: space-between; background: rgba(0,0,0,0.5); padding: 12px; border-radius: 12px; margin-bottom: 15px;">
+                <div><span id="p1-disp">P1</span>: <b id="p1-budget" style="color:var(--accent-green)">0</b>M$</div>
+                <div><span id="p2-disp">P2</span>: <b id="p2-budget" style="color:var(--accent-green)">0</b>M$</div>
+            </div>
+
+            <div style="text-align: center; background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold-primary); padding: 10px; border-radius: 10px; font-weight: bold; margin-bottom: 10px;" id="turn-display">الدور على: ...</div>
+            <h3 id="auction-pos-title" style="text-align: center; color: var(--gold-primary);">المركز: GK</h3>
+
+            <div class="fut-card" id="auction-card">
+                <div class="rating" id="card-rating">99</div>
+                <div class="position" id="card-pos">GK</div>
+                <img class="player-avatar" id="card-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=300&q=80" alt="Player">
+                <div class="name" id="card-name">لاعب</div>
+                <div class="type" id="card-type">ICON</div>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px;">
+                <p>السعر الحالي: <span id="current-bid" style="color: var(--gold-primary); font-size: 1.6rem; font-weight: bold;">10</span>M $</p>
+
+                <div class="custom-bid-container">
+                    <input type="number" id="custom-bid-input" class="custom-bid-input" placeholder="اكتب العرض بالمليون..." oninput="checkCustomBidInput()">
+                    <button class="btn" id="send-bid-btn" onclick="submitCustomBid()" style="display: none;">ارسال العرض 🚀</button>
+                    <button class="btn btn-danger" onclick="surrenderBid()">تسليم للخصم 🏳️</button>
+                </div>
+
+                <div style="margin-top: 5px;">
+                    <button class="btn" onclick="placeBid(1)">+1M $</button>
+                    <button class="btn" onclick="placeBid(5)">+5M $</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Wildcard & Final Squads -->
+        <div id="squads-section" class="section">
+            <h2 style="text-align: center; color: var(--gold-primary);">التشكيلات النهائية والوايلد كارد 🃏</h2>
+            <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem; color: #bbb;">ملاحظة: يحق لكل لاعب استخدام الوايلد كارد <b>مرة واحدة فقط على لاعب واحد فقط</b> من تشكيلته!</p>
+            
+            <div class="squad-container">
+                <div class="squad-box">
+                    <h3 id="sq-p1-title" style="color: var(--gold-primary);">تشكيلة P1</h3>
+                    <div id="sq-p1-list"></div>
+                </div>
+                <div class="squad-box">
+                    <h3 id="sq-p2-title" style="color: var(--gold-primary);">تشكيلة P2</h3>
+                    <div id="sq-p2-list"></div>
+                </div>
+            </div>
+            <br>
+            <button class="btn" style="width: 100%;" onclick="goToCaptainSelection()">المتابعة لاختيار كابتن الفريق ➔</button>
+        </div>
+
+        <!-- SECTION 6: Captain Selection -->
+        <div id="captain-section" class="section">
+            <h2 style="text-align: center; color: var(--gold-primary); margin-bottom: 15px;">👑 اختيار كابتن الفريق</h2>
+            <p style="text-align: center; margin-bottom: 20px;">اختر الكابتن القائد لكل فريق لرفع معنويات التشكيلة قبل المباراة:</p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <div class="squad-box">
+                    <h4 id="cap-p1-label" style="color: var(--gold-primary); margin-bottom: 10px;">كابتن P1:</h4>
+                    <select id="select-cap-p1"></select>
+                </div>
+                <div class="squad-box">
+                    <h4 id="cap-p2-label" style="color: var(--gold-primary); margin-bottom: 10px;">كابتن P2:</h4>
+                    <select id="select-cap-p2"></select>
+                </div>
+            </div>
+            <button class="btn" style="width: 100%; margin-top: 20px;" onclick="generateMatchResults()">عرض نتيجة المباراة والإحصائيات ⚽</button>
+        </div>
+
+        <!-- SECTION 7: Match Results & Stats -->
+        <div id="results-section" class="section">
+            <h2 style="text-align: center; color: var(--gold-primary);">🏆 نتيجة المباراة والإحصائيات الرسمية</h2>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <div style="font-size: 1.2rem; color: #aaa;" id="match-teams-title">BA ضد BE</div>
+                <div style="font-size: 3.8rem; font-weight: 900; color: var(--gold-primary); text-shadow: 0 0 20px var(--gold-primary);" id="final-score-display">2 - 1</div>
+                
+                <div style="display: flex; justify-content: space-around; margin-top: 10px; font-weight: bold; font-size: 1.1rem;">
+                    <div style="color: var(--accent-green);"><span id="p1-ovr-name">P1</span> OVR: <span id="p1-ovr-val">90</span> ⚡</div>
+                    <div style="color: var(--accent-blue);"><span id="p2-ovr-name">P2</span> OVR: <span id="p2-ovr-val">88</span> ⚡</div>
+                </div>
+            </div>
+
+            <div class="winner-box" id="winner-box-display">
+                <h3 id="winner-text">🎉 الفائز بالمباراة: BA 🎉</h3>
+            </div>
+
+            <div class="squad-box" style="width: 100%; margin-bottom: 20px;">
+                <h3 style="color: var(--gold-primary); margin-bottom: 10px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 5px;">⚽ أحداث المباراة والمسجلين:</h3>
+                <div id="match-events-content" style="line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem;"></div>
+
+                <h3 style="color: var(--gold-primary); margin-bottom: 10px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 5px;">📊 إحصائيات المباراة الشاملة:</h3>
+                <div id="match-stats-content"></div>
+            </div>
+
+            <p style="text-align: center; font-weight: bold; margin-bottom: 8px;">مشاركة وإرسال النتيجة عبر التطبيقات:</p>
+            <div class="share-buttons-grid">
+                <button class="btn btn-whatsapp" onclick="shareToWhatsApp()">📲 واتساب</button>
+                <button class="btn btn-facebook" onclick="shareToFacebook()">📘 فيسبوك</button>
+                <button class="btn btn-messenger" onclick="shareToMessenger()">💬 ماسنجر</button>
+                <button class="btn" onclick="shareGeneric()">📤 تطبيقات أخرى</button>
+            </div>
+            
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 15px;" onclick="returnToHomeWithReward()">🏠 العودة إلى الصفحة الرئيسية والحصول على الهدية 🎁</button>
+        </div>
+
+        <!-- SECTION 8: Deal or No Deal -->
+        <div id="deal-game" class="section">
+            <h2 id="deal-stage-title" style="text-align: center; color: var(--gold-primary);">لعبة DEAL OR NO DEAL</h2>
+            <p style="text-align: center; margin-bottom: 15px;" id="deal-turn-info">اختر صندوقك! أمامك 4 صناديق ومحاولتين فقط لكل مركز.</p>
+
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <!-- Player 1 Deal Box -->
+                <div class="squad-box">
+                    <h4 id="deal-p1-title" style="color: var(--gold-primary);">P1: اختر أحد الصناديق الـ 4</h4>
+                    <div class="boxes-grid" id="p1-deal-boxes">
+                        <div class="box" onclick="openDealBox(1, 0, this)">📦 صندوق 1</div>
+                        <div class="box" onclick="openDealBox(1, 1, this)">📦 صندوق 2</div>
+                        <div class="box" onclick="openDealBox(1, 2, this)">📦 صندوق 3</div>
+                        <div class="box" onclick="openDealBox(1, 3, this)">📦 صندوق 4</div>
+                    </div>
+                    <div id="p1-deal-status" style="margin-top: 10px; text-align: center;"></div>
+                </div>
+
+                <!-- Player 2 Deal Box -->
+                <div class="squad-box">
+                    <h4 id="deal-p2-title" style="color: var(--gold-primary);">P2: اختر أحد الصناديق الـ 4</h4>
+                    <div class="boxes-grid" id="p2-deal-boxes">
+                        <div class="box" onclick="openDealBox(2, 0, this)">📦 صندوق 1</div>
+                        <div class="box" onclick="openDealBox(2, 1, this)">📦 صندوق 2</div>
+                        <div class="box" onclick="openDealBox(2, 2, this)">📦 صندوق 3</div>
+                        <div class="box" onclick="openDealBox(2, 3, this)">📦 صندوق 4</div>
+                    </div>
+                    <div id="p2-deal-status" style="margin-top: 10px; text-align: center;"></div>
+                </div>
+            </div>
+
+            <button class="btn" id="deal-next-btn" style="width: 100%; margin-top: 20px; display:none;" onclick="nextDealStage()">المرحلة التالية ➔</button>
+        </div>
+
+        <!-- SECTION 9: PRIME ICONS (4-3-3 OVERALL 99) -->
+        <div id="prime-icons-section" class="section">
+            <h2 style="text-align: center; color: var(--gold-primary); margin-bottom: 10px;">👑 تشكيلة أيكونز برايم (خطة 4-3-3) 👑</h2>
+            <p style="text-align: center; margin-bottom: 20px;">أفضل 11 أسطورة في تاريخ كرة القدم بطاقات FC طاقة 99 كاملة</p>
+
+            <div class="prime-field">
+                <div class="field-row">
+                    <div class="fut-card"><div class="rating">99</div><div class="position">LW</div><img class="player-avatar" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=300&q=80"><div class="name">رونالدينيو</div><div class="type">ICON PRIME</div></div>
+                    <div class="fut-card"><div class="rating">99</div><div class="position">ST</div><img class="player-avatar" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=300&q=80"><div class="name">رونالدو نازاريو</div><div class="type">ICON PRIME</div></div>
+                    <div class="fut-card"><div class="rating">99</div><div class="position">RW</div><img class="player-avatar" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=300&q=80"><div class="name">مارادونا</div><div class="type">ICON PRIME</div></div>
+                </div>
+                <div class="field-row">
+                    <div class="fut-card"><div class="rating">99</div><div class="position">CM</div><img class="player-avatar" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=300&q=80"><div class="name">رود خوليت</div><div class="type">ICON PRIME</div></div>
+                    <div class="fut-card"><div class="rating">99</div><div class="position">CAM</div><img class="player-avatar" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=300&q=80"><div class="name">يوهان كرويف</div><div class="type">ICON PRIME</div></div>
+                    <div class="fut-card"><div class="rating">99</div><div class="position">CM</div><img class="player-avatar" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=300&q=80"><div class="name">زين الدين زيدان</div><div class="type">ICON PRIME</div></div>
+                </div>
+                <div class="field-row">
+                    <div class="fut-card"><div class="rating">99</div><div class="position">LB</div><img class="player-avatar" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=300&q=80"><div class="name">روبيرتو كارلوس</div><div class="type">ICON PRIME</div></div>
+                    <div class="fut-card"><div class="rating">99</div><div class="position">CB</div><img class="player-avatar" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=300&q=80"><div class="name">باولو مالدينى</div><div class="type">ICON PRIME</div></div>
+                    <div class="fut-card"><div class="rating">99</div><div class="position">CB</div><img class="player-avatar" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=300&q=80"><div class="name">فرانز بيكنباور</div><div class="type">ICON PRIME</div></div>
+                    <div class="fut-card"><div class="rating">99</div><div class="position">RB</div><img class="player-avatar" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=300&q=80"><div class="name">كافو</div><div class="type">ICON PRIME</div></div>
+                </div>
+                <div class="field-row">
+                    <div class="fut-card"><div class="rating">99</div><div class="position">GK</div><img class="player-avatar" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=300&q=80"><div class="name">ليف ياشين</div><div class="type">ICON PRIME</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 10: R2 Group & Ballon d'Or -->
+        <div id="r2-section" class="section">
+            <h2 style="text-align: center; color: var(--gold-primary);">منصة R2 Group 🟢</h2>
+            <p style="margin-top: 10px; line-height: 1.6; text-align: center;">مرحبًا بكم في مجتمع <b>R2 Group</b> الشامل على واتساب! المكان الأول لكل عشاق كرة القدم، الأخبار الحصرية، النقاشات الساخنة والمسابقات الكروية اليومية.</p>
+
+            <h3 style="margin-top: 25px; color: var(--gold-primary); text-align: center;">🏆 ترتيب الكرة الذهبية الرسمي (R2 Ballon d'Or):</h3>
+            <table class="r2-table">
+                <thead>
+                    <tr>
+                        <th>المركز</th>
+                        <th>اللاعب</th>
+                        <th>النقاط</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1 🥇</td><td><b>كيليان إمبابي</b></td><td>1900 بوينت</td></tr>
+                    <tr><td>2 🥈</td><td><b>لامين يامال</b></td><td>1700 بوينت</td></tr>
+                    <tr><td>3 🥉</td><td><b>هاري كين</b></td><td>1200 بوينت</td></tr>
+                    <tr><td>4</td><td><b>رودري</b></td><td>1000 بوينت</td></tr>
+                    <tr><td>5</td><td><b>عثمان ديمبلي</b></td><td>900 بوينت</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Modals -->
+    <div id="friendsModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold-primary); margin-bottom:10px;">👥 قائمة الأصدقاء</h3>
+            <p>المعرف الخاص بك (ID): <strong style="color:var(--accent-green)">9841029481203948</strong></p>
+            <input type="text" id="friend-id-input" placeholder="أدخل ID صديقك المكون من 16 رقم هنا...">
+            <button class="btn" style="width:100%;" onclick="sendFriendRequest()">إرسال طلب صداقة</button>
+            <button class="btn btn-secondary" style="width:100%; margin-top:5px;" onclick="closeModal('friendsModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="inboxModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold-primary); margin-bottom:10px;">📬 البريد الوارد</h3>
+            <div id="inbox-messages" style="margin: 15px 0;">
+                <div style="background: rgba(255,215,0,0.1); padding: 12px; border-radius: 10px; border: 1px solid var(--gold-primary); margin-bottom:10px;" id="welcome-reward-box">
+                    <p style="font-weight:bold; color:var(--gold-primary);">🎁 مكافأة الترحيب الحصرية (Ultimate Team)!</p>
+                    <p style="font-size:0.85rem; margin:5px 0;">احصل على 3,000 نقطة + 40,000 عملة سوق لبدء مسيرتك المدمرة!</p>
+                    <button class="btn" onclick="claimWelcomeReward()" id="claim-btn">استلام الهدية 🎁</button>
+                </div>
+                <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,215,0,0.2);">
+                    <p>📩 طلب صداقة جديد من ID: <strong>5510293847120934</strong></p>
+                    <div style="margin-top:8px;">
+                        <button class="btn" style="padding:4px 10px; font-size:0.8rem;" onclick="acceptFriend(this)">قبول</button>
+                        <button class="btn btn-danger" style="padding:4px 10px; font-size:0.8rem;" onclick="rejectFriend(this)">رفض</button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-secondary" style="width:100%;" onclick="closeModal('inboxModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="eventsModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold-primary); margin-bottom:10px;">🔥 قسم الأحداث</h3>
+            
+            <div id="champions-event" style="background: rgba(0,0,0,0.6); padding:15px; border-radius:12px; border: 2px solid var(--gold-primary); margin-bottom:15px;">
+                <h4 style="color:var(--gold-primary); font-size:1.1rem; text-align:center; margin-bottom:8px;">🔥 حدث CHAMPIONS 🔥</h4>
+                <p style="font-weight:bold; color:var(--accent-blue); font-size:0.9rem; margin-bottom:5px;">اللاعبين في الحدث:</p>
+                <ul style="list-style:none; padding-right:10px; font-size:0.88rem; line-height:1.6; color:#eee;">
+                    <li>• كفارتسخيليا 100 LW</li>
+                    <li>• ديسير دوى 100 RW</li>
+                    <li>• ايميليانو مارنيتنيز 98 GK</li>
+                </ul>
+                <div style="margin-top:10px; background:rgba(255,215,0,0.1); padding:8px; border-radius:8px; text-align:center; font-size:0.85rem; color:var(--gold-primary); font-weight:bold;">
+                    ينتهي هذا الحدث تلقائياً يوم 14 أغسطس ⌛
+                </div>
+            </div>
+
+            <div id="ahly-barca-event" style="background: rgba(0,0,0,0.6); padding:15px; border-radius:12px; border: 2px solid var(--gold-primary); margin-bottom:15px;">
+                <h4 style="color:var(--gold-primary); font-size:1.1rem; text-align:center; margin-bottom:8px;">🔥 حدث: الأهلي ضد برشلونة 🔥</h4>
+                <p style="font-weight:bold; color:var(--accent-blue); font-size:0.9rem; margin-bottom:5px;">اللاعبين في الحدث:</p>
+                <ul style="list-style:none; padding-right:10px; font-size:0.88rem; line-height:1.6; color:#eee;">
+                    <li>• إمام عاشور 94 CM</li>
+                    <li>• لامين يامال 95 RW</li>
+                    <li>• مصطفى شوبير 95 GK</li>
+                    <li>• جوان جارسيا 94 GK</li>
+                    <li>• ياسير ابراهيم 93 CB</li>
+                    <li>• إريك جارسيا 93 CB</li>
+                </ul>
+                <div style="margin-top:10px; background:rgba(255,215,0,0.1); padding:8px; border-radius:8px; text-align:center; font-size:0.85rem; color:var(--gold-primary); font-weight:bold;">
+                    المباراة يوم المباراة 19 أغسطس الساعة 9 مساء القناة الناقلة اون تايم سبورت
+                </div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.5); padding:15px; border-radius:12px; border: 1px solid var(--gold-primary);">
+                <h4 style="color:var(--gold-primary);">حدث الدوري الإسباني</h4>
+                <p style="font-size:0.85rem; color:#ccc; margin-bottom:10px;">اختر الأسبوع لعرض البطاقات الحصرية الخاصة بالحدث:</p>
+                <button class="btn" style="width:100%; font-size:0.9rem;" onclick="showWeek1Players()">الأسبوع 1 (فعال الآن 🟢)</button>
+                <button class="btn btn-secondary" style="width:100%; font-size:0.9rem; opacity:0.6;" disabled>الأسبوع 2 (قريباً 🔒)</button>
+                <button class="btn btn-secondary" style="width:100%; font-size:0.9rem; opacity:0.6;" disabled>الأسبوع 3 (قريباً 🔒)</button>
+                <button class="btn btn-secondary" style="width:100%; font-size:0.9rem; opacity:0.6;" disabled>الأسبوع 4 (قريباً 🔒)</button>
+            </div>
+            <button class="btn btn-secondary" style="width:100%; margin-top:10px;" onclick="closeModal('eventsModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="poemModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold-primary); margin-bottom:10px; text-align:center;">📜 شرح المنصة الأسطورية</h3>
+            <div class="poem-box">
+                أهلاً بفرسان التحدي والملعب<br>
+                في موقعٍ فيه الأسطورةُ تُلعب<br>
+                من ديل أور نو ديل بفتح الصناديق<br>
+                تختار أبطالاً يضيئون الطريق<br>
+                أو في المزاد برو ماكس تجمع شملك<br>
+                أحد عشر لاعباً تُثبت قدرتك<br>
+                اختر كابتن الفريق بحكمة وذكاء<br>
+                لترى النتيجة والإحصاء في العلياء!
+            </div>
+            <button class="btn btn-secondary" style="width:100%; margin-top:15px;" onclick="closeModal('poemModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold-primary); margin-bottom:10px;">⚙️ إعدادات المنصة</h3>
+            <label style="display:block; margin: 10px 0 5px;">مستوى صوت المؤثرات:</label>
+            <input type="range" min="0" max="100" value="80">
+            
+            <label style="display:block; margin: 10px 0 5px;">مستوى صعوبة الروبوت (AI):</label>
+            <select id="bot-difficulty">
+                <option value="beginner">مبتدئ</option>
+                <option value="amateur">هاوي</option>
+                <option value="semi-pro">نصف محترف</option>
+                <option value="pro">محترف</option>
+                <option value="world-class">عالمي</option>
+                <option value="legendary" selected>أسطوري</option>
+            </select>
+
+            <button class="btn" style="width:100%; margin-top:15px;" onclick="saveGameProgress(); closeModal('settingsModal'); alert('✅ تم حفظ الإعدادات والتقدم بنجاح!');">💾 حفظ الإعدادات والتقدم</button>
+        </div>
+    </div>
+
+    <!-- UT Modals -->
+    <div id="draftModal" class="modal">
+        <div class="modal-content" style="text-align:center;">
+            <h3 style="color:var(--gold-primary);">🎯 فتح الدرافت والفتحات</h3>
+            <p style="margin:10px 0; font-size:0.9rem;">لديك حالياً: <b style="color:var(--accent-green)" id="user-draft-count">0</b> درافت</p>
+            
+            <button class="btn" id="open-draft-btn" style="width:100%; background:var(--gold-gradient); margin-bottom:10px; font-size:1.1rem;" onclick="useDraftToOpen()">🚀 افتح الدرافت</button>
+
+            <hr style="border-color:rgba(255,215,0,0.2); margin:15px 0;">
+
+            <button class="btn btn-secondary" style="width:100%; margin-bottom:10px;" onclick="buyDraft(1, 2000)">شراء 1 درافت بـ 2,000 نقطة</button>
+            <button class="btn btn-secondary" style="width:100%; margin-bottom:10px;" onclick="buyDraft(10, 17500)">🔥 شراء 10 درافتات بـ 17,500 نقطة</button>
+
+            <button class="btn btn-secondary" style="width:100%; margin-top:15px;" onclick="closeModal('draftModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="subsModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold-primary); text-align:center;">🔄 قائمة الاحتياطيين (11 لاعب)</h3>
+            <div id="subs-list" style="margin-top:15px;"></div>
+            <button class="btn btn-secondary" style="width:100%; margin-top:15px;" onclick="closeModal('subsModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="resourcesModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold-primary); text-align:center;">📦 قائمة الموارد (عدد لا نهائي)</h3>
+            <div id="resources-list" style="margin-top:15px;"></div>
+            <button class="btn btn-secondary" style="width:100%; margin-top:15px;" onclick="closeModal('resourcesModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <script>
+        // Database categorized by Positions & Ratings
+        const playersByPos = {
+            GK: [
+                { name: "ايميليانو مارنيتنيز", pos: "GK", rating: 98, type: "حدث CHAMPIONS" },
+                { name: "مانويل نوير", pos: "GK", rating: 99, type: "حالي" },
+                { name: "مارك اندريه تير شتيغين", pos: "GK", rating: 98, type: "حالي" },
+                { name: "روبرت سانشيز", pos: "GK", rating: 84, type: "حالي" },
+                { name: "اليكس ميريت", pos: "GK", rating: 80, type: "حالي" },
+                { name: "ليف ياشين", pos: "GK", rating: 99, type: "أيكونز ICON" },
+                { name: "جانلويجى بوفون", pos: "GK", rating: 99, type: "أيكونز ICON" },
+                { name: "ايكر كاسياس", pos: "GK", rating: 99, type: "أيكونز ICON" },
+                { name: "بيتر تشيك", pos: "GK", rating: 98, type: "أيكونز ICON" },
+                { name: "بيتر شمايكل", pos: "GK", rating: 98, type: "أيكونز ICON" },
+                { name: "إدوين فاندار سار", pos: "GK", rating: 98, type: "أيكونز ICON" },
+                { name: "ديفيد دى خيا", pos: "GK", rating: 98, type: "حالي" },
+                { name: "تيبوا كورتوا", pos: "GK", rating: 98, type: "حالي" },
+                { name: "اليسون بيكر", pos: "GK", rating: 97, type: "حالي" },
+                { name: "ديدا", pos: "GK", rating: 97, type: "أيكونز ICON" },
+                { name: "إديرسون", pos: "GK", rating: 95, type: "حالي" },
+                { name: "جانلويجى دوناروما", pos: "GK", rating: 94, type: "حالي" },
+                { name: "ديفيد رايا", pos: "GK", rating: 94, type: "حالي" },
+                { name: "عصام الحضرى", pos: "GK", rating: 93, type: "أيكونز ICON" },
+                { name: "محمد الشناوى", pos: "GK", rating: 89, type: "حالي" },
+                { name: "مصطفى شوبير", pos: "GK", rating: 87, type: "حالي" },
+                { name: "أحمد الشناوى", pos: "GK", rating: 82, type: "حالي" },
+                { name: "اندريه اونانا", pos: "GK", rating: 79, type: "حالي" }
+            ],
+            LB: [
+                { name: "أشلى كول", pos: "LB", rating: 99, type: "أيكونز ICON" },
+                { name: "ثيو هيرناندز", pos: "LB", rating: 92, type: "حالي" },
+                { name: "ألفونسو ديفيز", pos: "LB", rating: 92, type: "حالي" },
+                { name: "ديماركو", pos: "LB", rating: 92, type: "حالي" },
+                { name: "بالدى", pos: "LB", rating: 86, type: "حالي" },
+                { name: "ميندى", pos: "LB", rating: 82, type: "حالي" },
+                { name: "روبيرتو كارلوس", pos: "LB", rating: 99, type: "أيكونز ICON" },
+                { name: "مارسيلو", pos: "LB", rating: 99, type: "أيكونز ICON" },
+                { name: "فيليب لام", pos: "LB", rating: 99, type: "أيكونز ICON" },
+                { name: "زامبيروتا", pos: "LB", rating: 98, type: "أيكونز ICON" },
+                { name: "نونو مينديش", pos: "LB", rating: 95, type: "حالي" },
+                { name: "مارك كوكوريا", pos: "LB", rating: 95, type: "حالي" },
+                { name: "أحمد فتوح", pos: "LB", rating: 83, type: "حالي" },
+                { name: "هاتو", pos: "LB", rating: 78, type: "حالي" }
+            ],
+            CB: [
+                { name: "سيرجيو راموس", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "اليساندرو نيستا", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "رونالد كومان", pos: "CB", rating: 98, type: "أيكونز ICON" },
+                { name: "روبن دياس", pos: "CB", rating: 90, type: "حالي" },
+                { name: "رونالد اراوخو", pos: "CB", rating: 84, type: "حالي" },
+                { name: "باولو مالدينى", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "فيرجيل فان دايك", pos: "CB", rating: 99, type: "حالي" },
+                { name: "فرانز بيكنباور", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "فرانكو باريزى", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "فابيو كانفارو", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "كيلينى", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "بوبى مور", pos: "CB", rating: 99, type: "أيكونز ICON" },
+                { name: "ريو فيرديناند", pos: "CB", rating: 98, type: "أيكونز ICON" },
+                { name: "جون تيرى", pos: "CB", rating: 98, type: "أيكونز ICON" },
+                { name: "جابريال مجاليش", pos: "CB", rating: 95, type: "حالي" },
+                { name: "ويليان ساليبا", pos: "CB", rating: 94, type: "حالي" },
+                { name: "دين هاوسين", pos: "CB", rating: 93, type: "حالي" },
+                { name: "ابراهيما كوناتى", pos: "CB", rating: 92, type: "حالي" },
+                { name: "ماركينيوس", pos: "CB", rating: 93, type: "حالي" },
+                { name: "وائل جمعة", pos: "CB", rating: 93, type: "أيكونز ICON" },
+                { name: "إبراهيم حسن", pos: "CB", rating: 93, type: "أيكونز ICON" },
+                { name: "ياسر ابراهيم", pos: "CB", rating: 84, type: "حالي" },
+                { name: "رامى رابيعا", pos: "CB", rating: 83, type: "حالي" },
+                { name: "إريك داير", pos: "CB", rating: 80, type: "حالي" },
+                { name: "هارى ماجواير", pos: "CB", rating: 78, type: "حالي" }
+            ],
+            RB: [
+                { name: "كارلوس البيرتو", pos: "RB", rating: 99, type: "أيكونز ICON" },
+                { name: "ليليان تورام", pos: "RB", rating: 99, type: "أيكونز ICON" },
+                { name: "غارى نيفيل", pos: "RB", rating: 97, type: "أيكونز ICON" },
+                { name: "أشرف حكيمى", pos: "RB", rating: 95, type: "حالي" },
+                { name: "كافو", pos: "RB", rating: 99, type: "أيكونز ICON" },
+                { name: "زانيتى", pos: "RB", rating: 99, type: "أيكونز ICON" },
+                { name: "دانيل كارفاخال", pos: "RB", rating: 99, type: "حالي" },
+                { name: "دانى الفيس", pos: "RB", rating: 99, type: "أيكونز ICON" },
+                { name: "ارنولد", pos: "RB", rating: 95, type: "حالي" },
+                { name: "نصير مازراوى", pos: "RB", rating: 85, type: "حالي" },
+                { name: "محمد هانى", pos: "RB", rating: 83, type: "حالي" },
+                { name: "ديجو دالوت", pos: "RB", rating: 80, type: "حالي" }
+            ],
+            CM: [
+                { name: "فرانك لامبارد", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "استيفين جيرارد", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "اندريا بيرلو", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "بول سكولز", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "كاى جوندوجان", pos: "CM", rating: 91, type: "حالي" },
+                { name: "كارلوس سولير", pos: "CM", rating: 80, type: "حالي" },
+                { name: "زين الدين زيدان", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "رود خوليت", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "لوثار ماتيوس", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "باتريك فييرا", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "تونى كروس", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "اندريس انيستا", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "لوكا مودريتش", pos: "CM", rating: 99, type: "حالي" },
+                { name: "اتشافى هيرناندز", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "اتشابى الونسو", pos: "CM", rating: 99, type: "أيكونز ICON" },
+                { name: "مايكل بالاك", pos: "CM", rating: 98, type: "أيكونز ICON" },
+                { name: "كلارنس سيدروف", pos: "CM", rating: 98, type: "أيكونز ICON" },
+                { name: "فرانك رايكارد", pos: "CM", rating: 98, type: "أيكونز ICON" },
+                { name: "جود بيلنجهام", pos: "CM", rating: 96, type: "حالي" },
+                { name: "بيدرى", pos: "CM", rating: 96, type: "حالي" },
+                { name: "بيرناندو سيلفا", pos: "CM", rating: 94, type: "حالي" },
+                { name: "الخطيب", pos: "CM", rating: 94, type: "أيكونز ICON" },
+                { name: "جافى", pos: "CM", rating: 92, type: "حالي" },
+                { name: "إمام عاشور", pos: "CM", rating: 87, type: "حالي" }
+            ],
+            CAM: [
+                { name: "يوهان كرويف", pos: "CAM", rating: 99, type: "أيكونز ICON" },
+                { name: "كاكا", pos: "CAM", rating: 99, type: "أيكونز ICON" },
+                { name: "ديجو مارادونا", pos: "CAM", rating: 99, type: "أيكونز ICON" },
+                { name: "زيكو", pos: "CAM", rating: 99, type: "أيكونز ICON" },
+                { name: "روبيرت باجيو", pos: "CAM", rating: 99, type: "أيكونز ICON" },
+                { name: "ميشيل بلاتينى", pos: "CAM", rating: 99, type: "أيكونز ICON" },
+                { name: "جورجى هاجى", pos: "CAM", rating: 97, type: "أيكونز ICON" },
+                { name: "كيفين دى بروين", pos: "CAM", rating: 97, type: "حالي" },
+                { name: "فلوريان فيرتز", pos: "CAM", rating: 95, type: "حالي" },
+                { name: "جمال موسيالا", pos: "CAM", rating: 94, type: "حالي" },
+                { name: "ايسكو", pos: "CAM", rating: 91, type: "حالي" },
+                { name: "فيليبى كوتينيو", pos: "CAM", rating: 90, type: "حالي" },
+                { name: "ديلى الى", pos: "CAM", rating: 81, type: "حالي" },
+                { name: "لينغارد", pos: "CAM", rating: 79, type: "حالي" }
+            ],
+            RW: [
+                { name: "ديسير دوى", pos: "RW", rating: 100, type: "حدث CHAMPIONS" },
+                { name: "ليونيل ميسي", pos: "RW", rating: 99, type: "حالي" },
+                { name: "لويس فيجو", pos: "RW", rating: 99, type: "أيكونز ICON" },
+                { name: "جورج بيست", pos: "RW", rating: 99, type: "أيكونز ICON" },
+                { name: "محمد صلاح", pos: "RW", rating: 99, type: "حالي" },
+                { name: "جارينشيا", pos: "RW", rating: 99, type: "أيكونز ICON" },
+                { name: "جارزينيو", pos: "RW", rating: 99, type: "أيكونز ICON" },
+                { name: "بوكايو ساكا", pos: "RW", rating: 85, type: "حالي" },
+                { name: "لامين يامال", pos: "RW", rating: 87, type: "حالي" },
+                { name: "عثمان ديمبيلى", pos: "RW", rating: 87, type: "حالي" },
+                { name: "مايكل اوليسي", pos: "RW", rating: 87, type: "حالي" },
+                { name: "أنتونى", pos: "RW", rating: 83, type: "حالي" },
+                { name: "سيرج غنابرى", pos: "RW", rating: 82, type: "حالي" },
+                { name: "سانشو", pos: "RW", rating: 80, type: "حالي" }
+            ],
+            LW: [
+                { name: "كفارتسخيليا", pos: "LW", rating: 100, type: "حدث CHAMPIONS" },
+                { name: "كريستيانو رونالدو", pos: "LW", rating: 99, type: "حالي" },
+                { name: "نيمار", pos: "LW", rating: 99, type: "حالي" },
+                { name: "رونالدينيو", pos: "LW", rating: 99, type: "أيكونز ICON" },
+                { name: "ريفالدو", pos: "LW", rating: 99, type: "أيكونز ICON" },
+                { name: "هازارد", pos: "LW", rating: 99, type: "أيكونز ICON" },
+                { name: "فينيسيوس جونيور", pos: "LW", rating: 96, type: "حالي" },
+                { name: "ماركوس راشفورد", pos: "LW", rating: 82, type: "حالي" },
+                { name: "انسوا فاتى", pos: "LW", rating: 80, type: "حالي" },
+                { name: "رحيم سترلينح", pos: "LW", rating: 80, type: "حالي" }
+            ],
+            ST: [
+                { name: "رونالدو الظاهرة", pos: "ST", rating: 99, type: "أيكونز ICON" },
+                { name: "فان باستين", pos: "ST", rating: 99, type: "أيكونز ICON" },
+                { name: "غيرد مولر", pos: "ST", rating: 99, type: "أيكونز ICON" },
+                { name: "اوزيبيو", pos: "ST", rating: 99, type: "أيكونز ICON" },
+                { name: "تييرى هنرى", pos: "ST", rating: 99, type: "أيكونز ICON" },
+                { name: "كريم بنزيما", pos: "ST", rating: 99, type: "أيكونز ICON" },
+                { name: "زلاتان ابراهيموفيتش", pos: "ST", rating: 99, type: "أيكونز ICON" },
+                { name: "كيليان امبابى", pos: "ST", rating: 98, type: "حالي" },
+                { name: "هارى كين", pos: "ST", rating: 97, type: "حالي" },
+                { name: "فيكتور جيوكيريس", pos: "ST", rating: 95, type: "حالي" },
+                { name: "لوكاكو", pos: "ST", rating: 84, type: "حالي" },
+                { name: "الفارو موراتا", pos: "ST", rating: 82, type: "حالي" }
+            ]
+        };
+
+        // Ultimate Team Global Variables
+        let utPoints = 0;
+        let utCoins = 0;
+        let userXB = 0;
+        let draftInventory = 0;
+        let claimedWelcome = false;
+
+        let utSquadMain = Array(11).fill(null);
+        let utSquadSubs = [];
+        let utSquadResources = [];
+
+        // Activity Levels Definition
+        const activityLevels = [
+            { level: 1, reqXB: 100, rewardType: 'points', rewardVal: 5000, rewardDesc: '5,000 نقطة' },
+            { level: 2, reqXB: 600, rewardType: 'coins', rewardVal: 100000, rewardDesc: '100,000 عملة سوق' },
+            { level: 3, reqXB: 1400, rewardType: 'draft', rewardVal: 7, rewardDesc: '7 درافت' },
+            { level: 4, reqXB: 2500, rewardType: 'mixed', rewardPoints: 20000, rewardCoins: 150000, rewardDesc: '20,000 نقطة + 150,000 عملة سوق' },
+            { level: 5, reqXB: 2500, rewardType: 'max', rewardDesc: 'المستوى الأقصى للنشاط 👑' }
+        ];
+
+        let claimedActivityRewards = [false, false, false, false, false];
+
+        const posNames11 = [
+            { key: "GK", name: "حارس مرمى (GK)" },
+            { key: "LB", name: "ظهير أيسر (LB)" },
+            { key: "CB", name: "قلب دفاع أول (CB1)" },
+            { key: "CB", name: "قلب دفاع ثاني (CB2)" },
+            { key: "RB", name: "ظهير أيمن (RB)" },
+            { key: "CM", name: "وسط ملعـب أول (CM1)" },
+            { key: "CM", name: "وسط ملعـب ثاني (CM2)" },
+            { key: "CAM", name: "وسط مهاجم (CAM)" },
+            { key: "RW", name: "جناح أيمن (RW)" },
+            { key: "LW", name: "جناح أيسر (LW)" },
+            { key: "ST", name: "مهاجم صريح (ST)" }
+        ];
+
+        const posNames5 = [
+            { key: "GK", name: "حارس مرمى (GK)" },
+            { key: "CB", name: "مدافع (CB)" },
+            { key: "CM", name: "خط وسط (CM)" },
+            { key: "RW", name: "مهاجم أيمن (RW/ST)" },
+            { key: "LW", name: "مهاجم أيسر (LW/ST)" }
+        ];
+
+        let p1Name = "BA";
+        let p2Name = "BE";
+        let selectedMode = '1v1';
+
+        // Auction & Game Logic Global Variables
+        let currentAuctionCount = 11;
+        let currentPositions = posNames11;
+        let auctionIndex = 0;
+        let p1Budget = 2000;
+        let p2Budget = 2000;
+        let p1Squad = [];
+        let p2Squad = [];
+        let currentBid = 10;
+        let currentBidder = 0; // 0 = none, 1 = p1, 2 = p2
+        let turnPlayer = 1; 
+        let currentCard = null;
+        let globalDrawnPlayerNames = new Set(); // Anti-duplicate tracker for active session
+
+        // Wildcard tracking
+        let p1WildcardUsed = false;
+        let p2WildcardUsed = false;
+
+        // Deal or No Deal Logic
+        let dealIndex = 0;
+        let dealP1Attempts = 0;
+        let dealP2Attempts = 0;
+        let dealP1Chosen = null;
+        let dealP2Chosen = null;
+        let dealCurrentBoxes = [];
+
+        // Save & Load Functionality
+        function saveGameProgress() {
+            const dataToSave = {
+                utPoints,
+                utCoins,
+                userXB,
+                draftInventory,
+                claimedWelcome,
+                claimedActivityRewards,
+                utSquadMain,
+                utSquadSubs,
+                utSquadResources,
+                p1Name,
+                p2Name,
+                botDifficulty: document.getElementById('bot-difficulty') ? document.getElementById('bot-difficulty').value : 'legendary'
+            };
+            localStorage.setItem('R2_GAMES_PROGRESS', JSON.stringify(dataToSave));
+        }
+
+        function loadGameProgress() {
+            const saved = localStorage.getItem('R2_GAMES_PROGRESS');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    utPoints = data.utPoints || 0;
+                    utCoins = data.utCoins || 0;
+                    userXB = data.userXB || 0;
+                    draftInventory = data.draftInventory || 0;
+                    claimedWelcome = data.claimedWelcome || false;
+                    claimedActivityRewards = data.claimedActivityRewards || [false, false, false, false, false];
+                    utSquadMain = data.utSquadMain || Array(11).fill(null);
+                    utSquadSubs = data.utSquadSubs || [];
+                    utSquadResources = data.utSquadResources || [];
+                    if (data.p1Name) document.getElementById('p1-name').value = data.p1Name;
+                    if (data.p2Name) document.getElementById('p2-name').value = data.p2Name;
+                    if (data.botDifficulty && document.getElementById('bot-difficulty')) {
+                        document.getElementById('bot-difficulty').value = data.botDifficulty;
+                    }
+                } catch(e) {
+                    console.error('Error loading progress:', e);
+                }
+            }
+        }
+
+        window.onload = function() {
+            loadGameProgress();
+            checkEventsExpiry();
+            renderUTUI();
+            renderActivitySection();
+            renderMarket();
+        };
+
+        function checkEventsExpiry() {
+            // Optional time checks
+        }
+
+        function claimWelcomeReward() {
+            if(claimedWelcome) return;
+            claimedWelcome = true;
+            utPoints += 3000;
+            utCoins += 40000;
+            document.getElementById('welcome-reward-box').style.display = 'none';
+            document.getElementById('inbox-badge').innerText = '';
+            alert('🎉 تم إضافة 3,000 نقطة و 40,000 عملة سوق لحسابك بنجاح!');
+            saveGameProgress();
+            renderUTUI();
+        }
+
+        function getCurrentActivityLevel() {
+            if (userXB < 100) return 1;
+            if (userXB < 600) return 2;
+            if (userXB < 1400) return 3;
+            if (userXB < 2500) return 4;
+            return 5;
+        }
+
+        function renderUTUI() {
+            document.getElementById('ut-points').innerText = utPoints.toLocaleString();
+            document.getElementById('ut-coins').innerText = utCoins.toLocaleString();
+            document.getElementById('ut-xb').innerText = userXB.toLocaleString();
+            document.getElementById('ut-level').innerText = "مستوى " + getCurrentActivityLevel();
+            
+            const countDisp = document.getElementById('draft-count-disp');
+            if(countDisp) countDisp.innerText = draftInventory;
+            const modalDraftDisp = document.getElementById('user-draft-count');
+            if(modalDraftDisp) modalDraftDisp.innerText = draftInventory;
+
+            if (claimedWelcome && document.getElementById('welcome-reward-box')) {
+                document.getElementById('welcome-reward-box').style.display = 'none';
+                document.getElementById('inbox-badge').innerText = '';
+            }
+
+            const grid = document.getElementById('main-squad-grid');
+            grid.innerHTML = '';
+            posNames11.forEach((posObj, idx) => {
+                const player = utSquadMain[idx];
+                const slot = document.createElement('div');
+                slot.className = `ut-slot ${player ? 'filled' : ''}`;
+                if(player) {
+                    slot.innerHTML = `
+                        <b style="color:var(--gold-primary);">${player.pos}</b>
+                        <span>${player.name}</span>
+                        <small style="color:var(--accent-green)">⚡ ${player.rating}</small>
+                    `;
+                } else {
+                    slot.innerHTML = `
+                        <b style="color:#aaa;">${posObj.key}</b>
+                        <span style="color:#666; font-size:0.75rem;">(فاضي)</span>
+                    `;
+                }
+                grid.appendChild(slot);
+            });
+        }
+
+        function showUTSubSection(subId) {
+            document.querySelectorAll('.ut-sub-section').forEach(el => el.style.display = 'none');
+            document.getElementById(subId).style.display = 'block';
+        }
+
+        function openDraftModal() { openModal('draftModal'); }
+
+        function buyDraft(count, cost) {
+            if(utPoints < cost) {
+                alert('❌ لا تملك عدد نقاط كافٍ لشراء الدرافت!');
+                return;
+            }
+            utPoints -= cost;
+            draftInventory += count;
+
+            alert(`✅ تم شراء ${count} درافت بنجاح! يمكنك الآن الضغط على "افتح الدرافت" في القائمة.`);
+            saveGameProgress();
+            renderUTUI();
+        }
+
+        function useDraftToOpen() {
+            if (draftInventory <= 0) {
+                alert('❌ لا تملك أي درافت حالياً! قم بشراء درافت أو احصل عليه من مكافآت النشاط.');
+                return;
+            }
+            draftInventory--;
+            addRandomPlayers(1);
+            alert('🎉 تم فتح 1 درافت بنجاح وإضافة لاعب جديد إلى تشكيلتك/الموارد!');
+            saveGameProgress();
+            renderUTUI();
+        }
+
+        function addRandomPlayers(count) {
+            for(let i=0; i<count; i++) {
+                const randomPosKey = posNames11[Math.floor(Math.random()*posNames11.length)].key;
+                const pool = playersByPos[randomPosKey];
+                const player = pool[Math.floor(Math.random()*pool.length)];
+                
+                let placed = false;
+                for(let s=0; s<11; s++) {
+                    if(!utSquadMain[s] && posNames11[s].key === player.pos) {
+                        utSquadMain[s] = player;
+                        placed = true;
+                        break;
+                    }
+                }
+                if(!placed) {
+                    if(utSquadSubs.length < 11) {
+                        utSquadSubs.push(player);
+                    } else {
+                        utSquadResources.push(player);
+                    }
+                }
+            }
+        }
+
+        function openSubsModal() {
+            const list = document.getElementById('subs-list');
+            list.innerHTML = '';
+            if (utSquadSubs.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#aaa;">لا يوجد لاعبين في الاحتياط.</p>';
+            } else {
+                utSquadSubs.forEach((p, i) => {
+                    list.innerHTML += `<div class="player-item-row"><span>${p.name} (${p.pos})</span><b style="color:var(--gold-primary)">⚡ ${p.rating}</b></div>`;
+                });
+            }
+            openModal('subsModal');
+        }
+
+        function openResourcesModal() {
+            const list = document.getElementById('resources-list');
+            list.innerHTML = '';
+            if (utSquadResources.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#aaa;">قائمة الموارد فارغة.</p>';
+            } else {
+                utSquadResources.forEach((p, i) => {
+                    list.innerHTML += `<div class="player-item-row"><span>${p.name} (${p.pos})</span><b style="color:var(--gold-primary)">⚡ ${p.rating}</b></div>`;
+                });
+            }
+            openModal('resourcesModal');
+        }
+
+        function renderActivitySection() {
+            const container = document.getElementById('activity-levels-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            activityLevels.forEach((lvl, idx) => {
+                let targetXB = lvl.reqXB;
+                let currentProgress = userXB;
+                let percent = 0;
+                
+                if (lvl.level < 5) {
+                    percent = Math.min(100, Math.floor((currentProgress / targetXB) * 100));
+                } else {
+                    percent = userXB >= 2500 ? 100 : 0;
+                }
+
+                let canClaim = false;
+                if (lvl.level === 1 && userXB >= 100) canClaim = true;
+                if (lvl.level === 2 && userXB >= 600) canClaim = true;
+                if (lvl.level === 3 && userXB >= 1400) canClaim = true;
+                if (lvl.level === 4 && userXB >= 2500) canClaim = true;
+
+                const isClaimed = claimedActivityRewards[idx];
+
+                const card = document.createElement('div');
+                card.className = 'activity-card';
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="color:var(--gold-primary);">مستوى ${lvl.level}</h3>
+                        <span style="font-size:0.85rem; color:var(--accent-blue);">${lvl.level < 5 ? userXB + ' / ' + targetXB + ' XB' : 'الحد الأقصى'}</span>
+                    </div>
+                    ${lvl.level < 5 ? `
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: ${percent}%;"></div>
+                    </div>` : ''}
+                    <p style="font-size:0.9rem; margin:6px 0;">🎁 الهدية: <b style="color:var(--accent-green);">${lvl.rewardDesc}</b></p>
+                    ${lvl.level < 5 ? `
+                    <button class="btn" style="width:100%; margin-top:8px;" ${canClaim && !isClaimed ? '' : 'disabled'} onclick="claimActivityReward(${idx})">
+                        ${isClaimed ? 'تم استلام المكافأة ✅' : (canClaim ? 'استلام الهدية 🎁' : 'غير مكتمل 🔒')}
+                    </button>` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function claimActivityReward(idx) {
+            if (claimedActivityRewards[idx]) return;
+
+            const lvl = activityLevels[idx];
+            if (lvl.level === 1 && userXB >= 100) {
+                utPoints += 5000;
+            } else if (lvl.level === 2 && userXB >= 600) {
+                utCoins += 100000;
+            } else if (lvl.level === 3 && userXB >= 1400) {
+                draftInventory += 7;
+            } else if (lvl.level === 4 && userXB >= 2500) {
+                utPoints += 20000;
+                utCoins += 150000;
+            } else {
+                return;
+            }
+
+            claimedActivityRewards[idx] = true;
+            alert(`🎉 مبروك! تم استلام هدية المستوى ${lvl.level}: ${lvl.rewardDesc}`);
+            saveGameProgress();
+            renderUTUI();
+            renderActivitySection();
+        }
+
+        function returnToHomeWithReward() {
+            userXB += 10;
+            utPoints += 600;
+            utCoins += 1000;
+
+            alert('🎁 حصلت على هدية إنهاء اللعبة:\n+10 XB ⚡\n+600 نقطة ✨\n+1,000 عملة سوق 🪙');
+            saveGameProgress();
+            renderUTUI();
+            renderActivitySection();
+            showSection('setup-section');
+        }
+
+        function renderMarket() {
+            const grid = document.getElementById('market-players-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            const searchVal = document.getElementById('market-search').value.toLowerCase();
+
+            Object.keys(playersByPos).forEach(pos => {
+                playersByPos[pos].forEach(player => {
+                    if(player.name.toLowerCase().includes(searchVal)) {
+                        let price = getPlayerPrice(player.rating, player.type);
+                        const card = document.createElement('div');
+                        card.className = 'mode-card';
+                        card.innerHTML = `
+                            <h4>${player.name}</h4>
+                            <p style="color:var(--gold-primary); font-weight:bold;">${player.pos} | ⚡ ${player.rating}</p>
+                            <p style="color:var(--accent-green); margin:5px 0;">🪙 ${price.toLocaleString()} عملة</p>
+                            <button class="btn" style="font-size:0.8rem; padding:4px 8px;" onclick="buyFromMarket('${player.name}', '${player.pos}', ${player.rating}, ${price})">شراء</button>
+                        `;
+                        grid.appendChild(card);
+                    }
+                });
+            });
+        }
+
+        function getPlayerPrice(rating, type) {
+            let base = rating * 1200;
+            if(type.includes("ICON")) base *= 2;
+            if(type.includes("CHAMPIONS")) base *= 2.5;
+            return Math.floor(base);
+        }
+
+        function buyFromMarket(name, pos, rating, price) {
+            if(utCoins < price) {
+                alert('❌ لا تملك عملات سوق كافية لشراء هذا اللاعب!');
+                return;
+            }
+            utCoins -= price;
+            const player = { name, pos, rating, type: "شراء من السوق" };
+            
+            let placed = false;
+            for(let s=0; s<11; s++) {
+                if(!utSquadMain[s] && posNames11[s].key === pos) {
+                    utSquadMain[s] = player;
+                    placed = true;
+                    break;
+                }
+            }
+            if(!placed) {
+                if(utSquadSubs.length < 11) {
+                    utSquadSubs.push(player);
+                } else {
+                    utSquadResources.push(player);
+                }
+            }
+
+            alert(`✅ تم شراء اللاعب ${name} بنجاح وإضافته إلى تشكيلتك!`);
+            saveGameProgress();
+            renderUTUI();
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function openModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
+
+        function selectMode(mode) {
+            selectedMode = mode;
+            document.getElementById('player-inputs').style.display = 'block';
+            document.getElementById('room-box').style.display = (mode === 'room') ? 'block' : 'none';
+            if (mode === 'ai') {
+                document.getElementById('p2-name').value = "الروبوت AI 🤖";
+            }
+        }
+
+        function generateNewRoomCode() {
+            const code = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('generated-code').innerText = code;
+        }
+
+        function connectRoom() {
+            const code = document.getElementById('join-code-input').value;
+            if(code.length === 6) {
+                alert('✅ تم الاتصال بنجاح بالغرفة أونلاين عبر Server 8080! الكود: ' + code);
+            } else {
+                alert('❌ أدخل كود صحيح مكون من 6 أرقام!');
+            }
+        }
+
+        function goToGameMenu() {
+            p1Name = document.getElementById('p1-name').value || "BA";
+            p2Name = document.getElementById('p2-name').value || "BE";
+            saveGameProgress();
+            showSection('menu-section');
+        }
+
+        function getRandomUnusedPlayer(posKey) {
+            const pool = playersByPos[posKey] || playersByPos['ST'];
+            const available = pool.filter(p => !globalDrawnPlayerNames.has(p.name));
+            if (available.length > 0) {
+                const picked = available[Math.floor(Math.random() * available.length)];
+                globalDrawnPlayerNames.add(picked.name);
+                return picked;
+            }
+            // Fallback if all are used
+            const fallback = pool[Math.floor(Math.random() * pool.length)];
+            return fallback;
+        }
+
+        function startAuctionSetup(count) {
+            currentAuctionCount = count;
+            currentPositions = (count === 11) ? posNames11 : posNames5;
+            document.getElementById('auction-setup-title').innerText = count === 11 ? "إعدادات المزاد برو ماكس (11 لاعب) 🔨" : "إعدادات الملعب الخماسي (5 لاعبين) ⚽";
+            showSection('auction-setup');
+        }
+
+        function startAuctionGame() {
+            const budgetVal = parseInt(document.getElementById('budget-select').value);
+            p1Budget = budgetVal;
+            p2Budget = budgetVal;
+            p1Squad = [];
+            p2Squad = [];
+            auctionIndex = 0;
+            globalDrawnPlayerNames.clear();
+            p1WildcardUsed = false;
+            p2WildcardUsed = false;
+
+            document.getElementById('p1-disp').innerText = p1Name;
+            document.getElementById('p2-disp').innerText = p2Name;
+
+            updateAuctionUI();
+            nextAuctionRound();
+            showSection('auction-game');
+        }
+
+        function updateAuctionUI() {
+            document.getElementById('p1-budget').innerText = p1Budget;
+            document.getElementById('p2-budget').innerText = p2Budget;
+            document.getElementById('current-bid').innerText = currentBid;
+        }
+
+        function nextAuctionRound() {
+            if (auctionIndex >= currentAuctionCount) {
+                finishAuctionGame();
+                return;
+            }
+
+            const currentPosObj = currentPositions[auctionIndex];
+            document.getElementById('auction-pos-title').innerText = `المركز (${auctionIndex + 1}/${currentAuctionCount}): ${currentPosObj.name}`;
+
+            currentCard = getRandomUnusedPlayer(currentPosObj.key);
+            document.getElementById('card-rating').innerText = currentCard.rating;
+            document.getElementById('card-pos').innerText = currentCard.pos;
+            document.getElementById('card-name').innerText = currentCard.name;
+            document.getElementById('card-type').innerText = currentCard.type;
+
+            currentBid = 10;
+            currentBidder = 0;
+            turnPlayer = (auctionIndex % 2 === 0) ? 1 : 2;
+            updateAuctionUI();
+            updateTurnDisplay();
+        }
+
+        function updateTurnDisplay() {
+            const name = turnPlayer === 1 ? p1Name : p2Name;
+            document.getElementById('turn-display').innerText = `الدور على: ${name}`;
+            
+            if (selectedMode === 'ai' && turnPlayer === 2) {
+                setTimeout(handleAIBid, 800);
+            }
+        }
+
+        function placeBid(amount) {
+            const newBid = currentBid + amount;
+            const currentBudget = turnPlayer === 1 ? p1Budget : p2Budget;
+
+            if (newBid > currentBudget) {
+                alert(`❌ الميزانية لا تكفي! المتبقي لديك: ${currentBudget}M $`);
+                return;
+            }
+
+            currentBid = newBid;
+            currentBidder = turnPlayer;
+            turnPlayer = turnPlayer === 1 ? 2 : 1;
+            updateAuctionUI();
+            updateTurnDisplay();
+        }
+
+        function checkCustomBidInput() {
+            const val = document.getElementById('custom-bid-input').value;
+            document.getElementById('send-bid-btn').style.display = val ? 'inline-block' : 'none';
+        }
+
+        function submitCustomBid() {
+            const val = parseInt(document.getElementById('custom-bid-input').value);
+            if (!val || val <= currentBid) {
+                alert('❌ يجب أن يكون المزاد أعلى من السعر الحالي!');
+                return;
+            }
+            const currentBudget = turnPlayer === 1 ? p1Budget : p2Budget;
+            if (val > currentBudget) {
+                alert(`❌ الميزانية لا تكفي! المتبقي لديك: ${currentBudget}M $`);
+                return;
+            }
+
+            currentBid = val;
+            currentBidder = turnPlayer;
+            document.getElementById('custom-bid-input').value = '';
+            document.getElementById('send-bid-btn').style.display = 'none';
+            turnPlayer = turnPlayer === 1 ? 2 : 1;
+            updateAuctionUI();
+            updateTurnDisplay();
+        }
+
+        function surrenderBid() {
+            if (currentBidder === 0) {
+                currentBidder = turnPlayer === 1 ? 2 : 1;
+            }
+
+            const winningPlayer = currentBidder;
+            const winnerName = winningPlayer === 1 ? p1Name : p2Name;
+
+            if (winningPlayer === 1) {
+                p1Budget -= currentBid;
+                p1Squad.push({ ...currentCard, price: currentBid });
+            } else {
+                p2Budget -= currentBid;
+                p2Squad.push({ ...currentCard, price: currentBid });
+            }
+
+            alert(`🎉 فاز ${winnerName} باللاعب ${currentCard.name} بسعر ${currentBid}M $!`);
+
+            auctionIndex++;
+            nextAuctionRound();
+        }
+
+        function handleAIBid() {
+            const currentBudget = p2Budget;
+            const maxVal = currentCard.rating > 95 ? 150 : 60;
+            
+            if (currentBid < maxVal && currentBid + 5 <= currentBudget && Math.random() > 0.3) {
+                placeBid(5);
+            } else {
+                surrenderBid();
+            }
+        }
+
+        function finishAuctionGame() {
+            renderSquadsSection();
+            showSection('squads-section');
+        }
+
+        function renderSquadsSection() {
+            document.getElementById('sq-p1-title').innerText = `تشكيلة ${p1Name} (المتبقي: ${p1Budget}M$)`;
+            document.getElementById('sq-p2-title').innerText = `تشكيلة ${p2Name} (المتبقي: ${p2Budget}M$)`;
+
+            const list1 = document.getElementById('sq-p1-list');
+            const list2 = document.getElementById('sq-p2-list');
+
+            list1.innerHTML = '';
+            p1Squad.forEach((p, idx) => {
+                list1.innerHTML += `
+                    <div class="player-item-row">
+                        <div><b>${p.pos}:</b> ${p.name} (⚡${p.rating})</div>
+                        <button class="btn btn-secondary" style="font-size:0.75rem; padding:2px 6px;" 
+                                ${p1WildcardUsed ? 'disabled' : ''} onclick="useWildcard(1, ${idx})">
+                            ${p1WildcardUsed ? 'تم الاستخدام 🔒' : '🃏 وايلد كارد'}
+                        </button>
+                    </div>`;
+            });
+
+            list2.innerHTML = '';
+            p2Squad.forEach((p, idx) => {
+                list2.innerHTML += `
+                    <div class="player-item-row">
+                        <div><b>${p.pos}:</b> ${p.name} (⚡${p.rating})</div>
+                        <button class="btn btn-secondary" style="font-size:0.75rem; padding:2px 6px;" 
+                                ${p2WildcardUsed ? 'disabled' : ''} onclick="useWildcard(2, ${idx})">
+                            ${p2WildcardUsed ? 'تم الاستخدام 🔒' : '🃏 وايلد كارد'}
+                        </button>
+                    </div>`;
+            });
+        }
+
+        function useWildcard(playerNum, squadIdx) {
+            if (playerNum === 1 && p1WildcardUsed) return;
+            if (playerNum === 2 && p2WildcardUsed) return;
+
+            const squad = playerNum === 1 ? p1Squad : p2Squad;
+            const oldPlayer = squad[squadIdx];
+            const newPlayer = getRandomUnusedPlayer(oldPlayer.pos);
+
+            squad[squadIdx] = { ...newPlayer, price: oldPlayer.price };
+
+            if (playerNum === 1) p1WildcardUsed = true;
+            if (playerNum === 2) p2WildcardUsed = true;
+
+            alert(`🃏 تم استخدام الوايلد كارد! استبدال ${oldPlayer.name} باللاعب ${newPlayer.name} (⚡${newPlayer.rating})!`);
+            renderSquadsSection();
+        }
+
+        function goToCaptainSelection() {
+            const select1 = document.getElementById('select-cap-p1');
+            const select2 = document.getElementById('select-cap-p2');
+
+            document.getElementById('cap-p1-label').innerText = `كابتن ${p1Name}:`;
+            document.getElementById('cap-p2-label').innerText = `كابتن ${p2Name}:`;
+
+            select1.innerHTML = p1Squad.map((p, i) => `<option value="${i}">${p.name} (${p.pos} - ⚡${p.rating})</option>`).join('');
+            select2.innerHTML = p2Squad.map((p, i) => `<option value="${i}">${p.name} (${p.pos} - ⚡${p.rating})</option>`).join('');
+
+            showSection('captain-section');
+        }
+
+        function generateMatchResults() {
+            const cap1Idx = parseInt(document.getElementById('select-cap-p1').value) || 0;
+            const cap2Idx = parseInt(document.getElementById('select-cap-p2').value) || 0;
+
+            let p1Ovr = Math.round(p1Squad.reduce((acc, p) => acc + p.rating, 0) / (p1Squad.length || 1));
+            let p2Ovr = Math.round(p2Squad.reduce((acc, p) => acc + p.rating, 0) / (p2Squad.length || 1));
+
+            // Captain boost
+            p1Ovr += 2;
+            p2Ovr += 2;
+
+            document.getElementById('match-teams-title').innerText = `${p1Name} ضد ${p2Name}`;
+            document.getElementById('p1-ovr-name').innerText = p1Name;
+            document.getElementById('p1-ovr-val').innerText = p1Ovr;
+            document.getElementById('p2-ovr-name').innerText = p2Name;
+            document.getElementById('p2-ovr-val').innerText = p2Ovr;
+
+            let p1Goals = Math.max(0, Math.floor((p1Ovr - 80) / 3) + Math.floor(Math.random() * 2));
+            let p2Goals = Math.max(0, Math.floor((p2Ovr - 80) / 3) + Math.floor(Math.random() * 2));
+
+            document.getElementById('final-score-display').innerText = `${p1Goals} - ${p2Goals}`;
+
+            const winnerText = document.getElementById('winner-text');
+            if (p1Goals > p2Goals) {
+                winnerText.innerText = `🎉 الفائز بالمباراة: ${p1Name} 🎉`;
+            } else if (p2Goals > p1Goals) {
+                winnerText.innerText = `🎉 الفائز بالمباراة: ${p2Name} 🎉`;
+            } else {
+                winnerText.innerText = `🤝 تعادل حماسي بين الفريقين! 🤝`;
+            }
+
+            // Events
+            let eventsHtml = '';
+            for (let g = 0; g < p1Goals; g++) {
+                const scorer = p1Squad[Math.floor(Math.random() * p1Squad.length)] || { name: "لاعب" };
+                const min = Math.floor(Math.random() * 88) + 1;
+                eventsHtml += `⚽ دقيقة ${min}' - هدف لـ ${p1Name} بواسطة <b>${scorer.name}</b><br>`;
+            }
+            for (let g = 0; g < p2Goals; g++) {
+                const scorer = p2Squad[Math.floor(Math.random() * p2Squad.length)] || { name: "لاعب" };
+                const min = Math.floor(Math.random() * 88) + 1;
+                eventsHtml += `⚽ دقيقة ${min}' - هدف لـ ${p2Name} بواسطة <b>${scorer.name}</b><br>`;
+            }
+            document.getElementById('match-events-content').innerHTML = eventsHtml || "مباراة دفاعية مغلقة بدون أهداف في الوقت الأصلي.";
+
+            // Stats
+            document.getElementById('match-stats-content').innerHTML = `
+                <div style="display:flex; justify-content:space-between; margin:5px 0;"><span>${p1Ovr + 5}%</span><b>الاستحواذ</b><span>${p2Ovr + 3}%</span></div>
+                <div style="display:flex; justify-content:space-between; margin:5px 0;"><span>${p1Goals + 3}</span><b>التسديدات على المرمى</b><span>${p2Goals + 2}</span></div>
+            `;
+
+            showSection('results-section');
+        }
+
+        // Deal Or No Deal Logic
+        function startDealOrNoDeal() {
+            globalDrawnPlayerNames.clear();
+            p1Squad = [];
+            p2Squad = [];
+            dealIndex = 0;
+            currentAuctionCount = 11;
+            currentPositions = posNames11;
+            startDealStage();
+            showSection('deal-game');
+        }
+
+        function startDealStage() {
+            if (dealIndex >= currentAuctionCount) {
+                finishAuctionGame();
+                return;
+            }
+
+            const posObj = currentPositions[dealIndex];
+            document.getElementById('deal-stage-title').innerText = `💼 DEAL OR NO DEAL - المركز (${dealIndex + 1}/${currentAuctionCount}): ${posObj.name}`;
+            document.getElementById('deal-next-btn').style.display = 'none';
+
+            dealP1Attempts = 0;
+            dealP2Attempts = 0;
+            dealP1Chosen = null;
+            dealP2Chosen = null;
+
+            // Generate 4 boxes for this stage
+            dealCurrentBoxes = [
+                getRandomUnusedPlayer(posObj.key),
+                getRandomUnusedPlayer(posObj.key),
+                getRandomUnusedPlayer(posObj.key),
+                getRandomUnusedPlayer(posObj.key)
+            ];
+
+            resetDealBoxUI(1);
+            resetDealBoxUI(2);
+
+            document.getElementById('deal-p1-title').innerText = `${p1Name}: اختر أحد الصناديق (محاولة 1/2)`;
+            document.getElementById('deal-p2-title').innerText = `${p2Name}: اختر أحد الصناديق (محاولة 1/2)`;
+
+            if (selectedMode === 'ai') {
+                setTimeout(handleAIDealChoice, 1000);
+            }
+        }
+
+        function resetDealBoxUI(playerNum) {
+            const container = document.getElementById(`p${playerNum}-deal-boxes`);
+            container.innerHTML = '';
+            for (let i = 0; i < 4; i++) {
+                container.innerHTML += `<div class="box" onclick="openDealBox(${playerNum}, ${i}, this)">📦 صندوق ${i + 1}</div>`;
+            }
+            document.getElementById(`p${playerNum}-deal-status`).innerText = '';
+        }
+
+        function openDealBox(playerNum, boxIdx, element) {
+            if (playerNum === 1 && dealP1Chosen) return;
+            if (playerNum === 2 && dealP2Chosen) return;
+
+            const attempts = playerNum === 1 ? ++dealP1Attempts : ++dealP2Attempts;
+            const player = dealCurrentBoxes[boxIdx];
+
+            element.classList.add('opened');
+            element.innerText = `${player.name} (${player.rating})`;
+
+            const statusDiv = document.getElementById(`p${playerNum}-deal-status`);
+
+            if (attempts === 1) {
+                if (confirm(`خرج لك: ${player.name} (⚡${player.rating})\nهل تقبل به؟ (OK = قبول / Cancel = المحاولة الثانية والربط بالصندوق القادم)`)) {
+                    if (playerNum === 1) dealP1Chosen = player;
+                    else dealP2Chosen = player;
+                    statusDiv.innerHTML = `<b style="color:var(--accent-green)">تم قبول: ${player.name} (⚡${player.rating})</b>`;
+                } else {
+                    statusDiv.innerHTML = `<span style="color:#aaa">رفضت المحاولة الأولى. اختر صندوقًا آخر!</span>`;
+                    document.getElementById(`deal-p${playerNum}-title`).innerText = `${playerNum === 1 ? p1Name : p2Name}: اختر صندوك الأخير (محاولة 2/2)`;
+                    return;
+                }
+            } else {
+                if (playerNum === 1) dealP1Chosen = player;
+                else dealP2Chosen = player;
+                statusDiv.innerHTML = `<b style="color:var(--accent-green)">استقر على: ${player.name} (⚡${player.rating})</b>`;
+            }
+
+            checkDealStageCompletion();
+        }
+
+        function handleAIDealChoice() {
+            if (dealP2Chosen) return;
+            const firstIdx = Math.floor(Math.random() * 4);
+            const player = dealCurrentBoxes[firstIdx];
+
+            if (player.rating >= 92) {
+                dealP2Chosen = player;
+                document.getElementById('p2-deal-status').innerHTML = `<b style="color:var(--accent-green)">تم قبول: ${player.name} (⚡${player.rating})</b>`;
+            } else {
+                let secondIdx = (firstIdx + 1) % 4;
+                dealP2Chosen = dealCurrentBoxes[secondIdx];
+                document.getElementById('p2-deal-status').innerHTML = `<b style="color:var(--accent-green)">استقر على: ${dealP2Chosen.name} (⚡${dealP2Chosen.rating})</b>`;
+            }
+            checkDealStageCompletion();
+        }
+
+        function checkDealStageCompletion() {
+            if (dealP1Chosen && dealP2Chosen) {
+                p1Squad.push(dealP1Chosen);
+                p2Squad.push(dealP2Chosen);
+                document.getElementById('deal-next-btn').style.display = 'block';
+            }
+        }
+
+        function nextDealStage() {
+            dealIndex++;
+            startDealStage();
+        }
+
+        // Sharing Utilities
+        function shareToWhatsApp() {
+            const text = encodeURIComponent(`🎮 لعبت مباراة أسطورية على R2 GAMES!\nالنتيجة: ${document.getElementById('final-score-display').innerText}\nتعال تحداني الآن!`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        function shareToFacebook() {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+        }
+
+        function shareToMessenger() {
+            window.open(`fb-messenger://share?link=${encodeURIComponent(window.location.href)}`, '_blank');
+        }
+
+        function shareGeneric() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'R2 GAMES',
+                    text: 'نتيجة مباراة R2 GAMES الأسطورية!',
+                    url: window.location.href
+                });
+            } else {
+                alert('نسخ الرابط: ' + window.location.href);
+            }
+        }
+
+        function sendFriendRequest() {
+            const val = document.getElementById('friend-id-input').value;
+            if(val.length === 16) {
+                alert('✅ تم إرسال طلب الصداقة بنجاح إلى ID: ' + val);
+            } else {
+                alert('❌ يرجى إدخال ID صحيح مكون من 16 رقم!');
+            }
+        }
+
+        function acceptFriend(btn) {
+            btn.parentElement.parentElement.innerHTML = '<p style="color:var(--accent-green)">✅ تم قبول الطلب بنجاح!</p>';
+        }
+
+        function rejectFriend(btn) {
+            btn.parentElement.parentElement.remove();
+        }
+
+        function showWeek1Players() {
+            alert('🟢 بطاقات الأسبوع الأول المتاحة: لامين يامال 95 - جود بيلنجهام 96 - فينيسيوس 96');
+        }
+    </script>
+</body>
+</html>
+
